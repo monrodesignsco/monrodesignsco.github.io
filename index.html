@@ -11,7 +11,7 @@
       padding: 0;
       height: 100%;
       width: 100%;
-      overflow: hidden; /* Prevents double page scrollbars */
+      overflow: hidden; 
     }
 
     body {
@@ -19,7 +19,7 @@
       font-family:"Graphik Webfont","-apple-system","Helvetica Neue","Droid Sans","Arial","sans-serif";
     }
 
-    /* Full screen container for your banner and Etsy widget */
+    /* Full screen container */
     .app-container {
       display: flex;
       flex-direction: column;
@@ -27,20 +27,30 @@
       width: 100vw;
     }
 
-    /* Fixed aspect ratio setup for your 3360x840 banner */
+    /* Animated aspect ratio setup for your 3360x840 banner */
     .shop-banner {
       width: 100%;
       height: auto;
       aspect-ratio: 3360 / 840;
-      display: block; /* Eliminates white gap under image */
+      display: block; 
       object-fit: cover;
+      transition: all 0.4s ease-in-out; /* Smooth collapse animation */
+      opacity: 1;
+      max-height: 25vh; /* Stops banner from dominating tall screens */
+    }
+
+    /* Class applied by JavaScript when scrolling happens */
+    .shop-banner.shrunk {
+      max-height: 0px !important;
+      opacity: 0;
+      pointer-events: none; /* Disables interactions when hidden */
     }
 
     /* Force the Etsy iframe to take exactly what vertical space is left */
     .etsy-iframe {
       width: 100%;
       flex: 1;
-      min-height: 0; /* Allows iframe to fit without pushing off screen */
+      min-height: 0; 
       border: none;
     }
   </style>
@@ -48,7 +58,7 @@
   <!-- Google Site Verification -->
   <meta name="google-site-verification" content="oa5vPCkiySA9xVVFAL_LoFbC-GhN_sXa20v6H7858_w" />
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-872XP6ZWSB"></script>
+  <script async src="https://googletagmanager.com"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -58,21 +68,46 @@
   </script>
   
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WRJ43XTK');</script>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s),j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://googletagmanager.com;})(window,document,'script','dataLayer','GTM-WRJ43XTK');</script>
   <!-- End Google Tag Manager -->
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRJ43XTK"
+  <noscript><iframe src="https://googletagmanager.com"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <!-- Layout wrapper starts here -->
-  <div class="app-container">
-    <img src="/src/Shop_Banner_3360x840.jpg" alt="Monro Designs Co Banner" class="shop-banner">
-    
-    <iframe src="https://widgets.sociablekit.com/etsy-shop/iframe/25691742" class="etsy-iframe"></iframe>
+  <!-- Layout wrapper -->
+  <div class="app-container" id="mainContainer">
+    <img src="/src/Shop_Banner_3360x840.jpg" alt="Monro Designs Co Banner" class="shop-banner" id="bannerImg">
+    <iframe src="https://sociablekit.com" class="etsy-iframe"></iframe>
   </div>
+
+  <script>
+    const banner = document.getElementById('bannerImg');
+    
+    // Detects trackpad/mousewheel scrolling downward anywhere on the layout
+    window.addEventListener('wheel', function(event) {
+      if (event.deltaY > 0) {
+        banner.classList.add('shrunk');
+      } else if (event.deltaY < -10) {
+        // Optional: Bring the banner back if they scroll hard upwards
+        banner.classList.remove('shrunk');
+      }
+    });
+
+    // Detects swipe up actions on mobile touch screens
+    let touchStart = 0;
+    window.addEventListener('touchstart', e => touchStart = e.changedTouches[0].screenY);
+    window.addEventListener('touchend', e => {
+      let touchEnd = e.changedTouches[0].screenY;
+      if (touchStart - touchEnd > 30) { 
+        banner.classList.add('shrunk'); // Swiped up (scrolling down)
+      } else if (touchEnd - touchStart > 50) {
+        banner.classList.remove('shrunk'); // Swiped down (scrolling up)
+      }
+    });
+  </script>
 
 </body>
 </html>
