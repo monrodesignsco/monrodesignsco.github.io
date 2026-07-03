@@ -1,134 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Monro Designs Co</title>
-  <link rel="icon" type="image/x-icon" href="/src/Logo_200x200.jpg">
+    <title>Monro Designs Co</title>
+    <link rel="icon" type="image/x-icon" href="/src/Logo_200x200.jpg">
 
-  <style>
-    /* Reset margins and lock parent heights */
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      overflow: hidden; 
-    }
+    <style>
+        /* Absolute layout boundaries to prevent rendering calculation bugs */
+        html, body {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          width: 100%;
+          overflow: hidden; /* Stops ugly double scrollbars from forming */
+        }
+        
+        body {
+          line-height: 27.2px;
+          font-family: "Graphik Webfont", "-apple-system", "Helvetica Neue", "Droid Sans", "Arial", "sans-serif";
+        }
+        
+        /* Outer wrapper containing both elements */
+        .app-viewport {
+          display: flex;
+          flex-direction: column;
+          height: 100vh;
+          width: 100vw;
+        }
+        
+        /* Fixed aspect-ratio element matching your 3360x840 banner asset */
+        .shop-banner {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 3360 / 840; /* Forces precise 4:1 width-to-height scaling */
+          display: block; 
+          object-fit: cover;
+          flex-shrink: 0; /* Prevents the iframe from squishing the banner height */
+        }
+        
+        /* Structural container for your third-party Etsy widget */
+        .etsy-widget-frame {
+          width: 100%;
+          flex-grow: 1; /* Instructs browser to expand into remaining area natively */
+          min-height: 0; /* Important: prevents iframes from pushing content past screen boundaries */
+          border: none;
+          display: block;
+        }
+    </style>
 
-    body {
-      line-height:27.2px;
-      font-family:"Graphik Webfont","-apple-system","Helvetica Neue","Droid Sans","Arial","sans-serif";
-    }
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="oa5vPCkiySA9xVVFAL_LoFbC-GhN_sXa20v6H7858_w" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://googletagmanager.com"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    /* Full screen container */
-    .app-container {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      width: 100vw;
-    }
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-    /* Animated aspect ratio setup for your 3360x840 banner */
-    .shop-banner {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 3360 / 840;
-      display: block; 
-      object-fit: cover;
-      transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out; /* Explicit animations */
-      opacity: 1;
-      max-height: 25vh; 
-    }
+        gtag('config', 'G-872XP6ZWSB');
+    </script>
 
-    /* Class applied by JavaScript when scrolling happens */
-    .shop-banner.shrunk {
-      max-height: 0px !important;
-      opacity: 0;
-      pointer-events: none; 
-    }
-
-    /* Force the Etsy iframe to take exactly what vertical space is left */
-    .etsy-iframe {
-      width: 100%;
-      flex: 1;
-      min-height: 0; 
-      border: none;
-    }
-  </style>
-
-  <!-- Google Site Verification -->
-  <meta name="google-site-verification" content="oa5vPCkiySA9xVVFAL_LoFbC-GhN_sXa20v6H7858_w" />
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://googletagmanager.com"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-872XP6ZWSB');
-  </script>
-  
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s),j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://googletagmanager.com;})(window,document,'script','dataLayer','GTM-WRJ43XTK');</script>
-  <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    'gtm.start': new Date().getTime(),
+                    event: 'gtm.js'
+                });
+                var f = d.getElementsByTagName(s),
+                    j = d.createElement(s),
+                    dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src = 'https://googletagmanager.com;})(window,document,'
+                script ','
+                dataLayer ','
+                GTM - WRJ43XTK ');
+    </script>
+    <!-- End Google Tag Manager -->
 </head>
+
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://googletagmanager.com"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://googletagmanager.com" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-  <!-- Layout wrapper -->
-  <div class="app-container" id="mainContainer">
-    <img src="/src/Shop_Banner_3360x840.jpg" alt="Monro Designs Co Banner" class="shop-banner" id="bannerImg">
-    <iframe id="etsyWidget" src="https://sociablekit.com" class="etsy-iframe"></iframe>
-  </div>
+    <!-- Fixed-Layout Structural Wrapper Block -->
+    <div class="app-viewport">
 
-  <script>
-    const banner = document.getElementById('bannerImg');
-    const iframe = document.getElementById('etsyWidget');
-    
-    // Function to force Etsy widget layout recalculation 
-    function fixWidgetLayout() {
-      // Temporarily toggle width slightly to force the internal browser engine 
-      // inside the iframe to recalculate responsive CSS grids natively.
-      iframe.style.width = '99.9%';
-      setTimeout(() => {
-        iframe.style.width = '100%';
-      }, 50);
-    }
+        <!-- Top Shop Banner Element -->
+        <img src="/src/Shop_Banner_3360x840.jpg" alt="Monro Designs Co Banner" class="shop-banner">
 
-    // Fix tiles immediately after the banner's CSS transition completes
-    banner.addEventListener('transitionend', fixWidgetLayout);
+        <!-- Etsy Shop Embedded Iframe Display Area -->
+        <iframe src="https://widgets.sociablekit.com/etsy-shop/iframe/25691742" class="etsy-widget-frame"></iframe>
 
-    // Detects trackpad/mousewheel scrolling downward anywhere on the layout
-    window.addEventListener('wheel', function(event) {
-      if (event.deltaY > 0) {
-        if (!banner.classList.contains('shrunk')) {
-          banner.classList.add('shrunk');
-        }
-      } else if (event.deltaY < -10) {
-        if (banner.classList.contains('shrunk')) {
-          banner.classList.remove('shrunk');
-        }
-      }
-    });
-
-    // Detects swipe up actions on mobile touch screens
-    let touchStart = 0;
-    window.addEventListener('touchstart', e => touchStart = e.changedTouches.screenY);
-    window.addEventListener('touchend', e => {
-      let touchEnd = e.changedTouches.screenY;
-      if (touchStart - touchEnd > 30) { 
-        if (!banner.classList.contains('shrunk')) {
-          banner.classList.add('shrunk');
-        }
-      } else if (touchEnd - touchStart > 50) {
-        if (banner.classList.contains('shrunk')) {
-          banner.classList.remove('shrunk');
-        }
-      }
-    });
-  </script>
+    </div>
 
 </body>
+
 </html>
