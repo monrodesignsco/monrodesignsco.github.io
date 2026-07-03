@@ -3,13 +3,11 @@
         xmlns:image="http://google.com"
         xmlns:video="http://google.com">
   <url>
-    <!-- Main Page —>
     <loc>https://monrodesignsco.github.io/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1</priority>
 
-    <!-- Dinosaur T-Shirts -->
     <loc>https://monrodesignsco.github.io/DinoDesign1</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>weekly</changefreq>
@@ -51,7 +49,6 @@
     <priority>0.8</priority>
 
     
-    <!-- Image Extension Fields -->
     <image:image>
       <image:loc>https://monrodesignsco.github.io/src/Shop_Banner_3360x840.jpg</image:loc>
       <image:caption>The Shop Banner of the Monro Designs Co Etsy Store. See here: https://monrodesignsco.github.io/ © Monro Designs Co</image:caption>
