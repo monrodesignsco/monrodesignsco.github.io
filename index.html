@@ -34,16 +34,16 @@
       aspect-ratio: 3360 / 840;
       display: block; 
       object-fit: cover;
-      transition: all 0.4s ease-in-out; /* Smooth collapse animation */
+      transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out; /* Explicit animations */
       opacity: 1;
-      max-height: 25vh; /* Stops banner from dominating tall screens */
+      max-height: 25vh; 
     }
 
     /* Class applied by JavaScript when scrolling happens */
     .shop-banner.shrunk {
       max-height: 0px !important;
       opacity: 0;
-      pointer-events: none; /* Disables interactions when hidden */
+      pointer-events: none; 
     }
 
     /* Force the Etsy iframe to take exactly what vertical space is left */
@@ -80,31 +80,52 @@
   <!-- Layout wrapper -->
   <div class="app-container" id="mainContainer">
     <img src="/src/Shop_Banner_3360x840.jpg" alt="Monro Designs Co Banner" class="shop-banner" id="bannerImg">
-    <iframe src="https://sociablekit.com" class="etsy-iframe"></iframe>
+    <iframe id="etsyWidget" src="https://sociablekit.com" class="etsy-iframe"></iframe>
   </div>
 
   <script>
     const banner = document.getElementById('bannerImg');
+    const iframe = document.getElementById('etsyWidget');
     
+    // Function to force Etsy widget layout recalculation 
+    function fixWidgetLayout() {
+      // Temporarily toggle width slightly to force the internal browser engine 
+      // inside the iframe to recalculate responsive CSS grids natively.
+      iframe.style.width = '99.9%';
+      setTimeout(() => {
+        iframe.style.width = '100%';
+      }, 50);
+    }
+
+    // Fix tiles immediately after the banner's CSS transition completes
+    banner.addEventListener('transitionend', fixWidgetLayout);
+
     // Detects trackpad/mousewheel scrolling downward anywhere on the layout
     window.addEventListener('wheel', function(event) {
       if (event.deltaY > 0) {
-        banner.classList.add('shrunk');
+        if (!banner.classList.contains('shrunk')) {
+          banner.classList.add('shrunk');
+        }
       } else if (event.deltaY < -10) {
-        // Optional: Bring the banner back if they scroll hard upwards
-        banner.classList.remove('shrunk');
+        if (banner.classList.contains('shrunk')) {
+          banner.classList.remove('shrunk');
+        }
       }
     });
 
     // Detects swipe up actions on mobile touch screens
     let touchStart = 0;
-    window.addEventListener('touchstart', e => touchStart = e.changedTouches[0].screenY);
+    window.addEventListener('touchstart', e => touchStart = e.changedTouches.screenY);
     window.addEventListener('touchend', e => {
-      let touchEnd = e.changedTouches[0].screenY;
+      let touchEnd = e.changedTouches.screenY;
       if (touchStart - touchEnd > 30) { 
-        banner.classList.add('shrunk'); // Swiped up (scrolling down)
+        if (!banner.classList.contains('shrunk')) {
+          banner.classList.add('shrunk');
+        }
       } else if (touchEnd - touchStart > 50) {
-        banner.classList.remove('shrunk'); // Swiped down (scrolling up)
+        if (banner.classList.contains('shrunk')) {
+          banner.classList.remove('shrunk');
+        }
       }
     });
   </script>
