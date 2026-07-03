@@ -1,12 +1,47 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
   <title>Monro Designs Co</title>
   <link rel="icon" type="image/x-icon" href="/src/Logo_200x200.jpg">
 
   <style>
+    /* Reset margins and lock parent heights */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden; /* Prevents double page scrollbars */
+    }
+
     body {
       line-height:27.2px;
       font-family:"Graphik Webfont","-apple-system","Helvetica Neue","Droid Sans","Arial","sans-serif";
+    }
+
+    /* Full screen container for your banner and Etsy widget */
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* Fixed aspect ratio setup for your 3360x840 banner */
+    .shop-banner {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3360 / 840;
+      display: block; /* Eliminates white gap under image */
+      object-fit: cover;
+    }
+
+    /* Force the Etsy iframe to take exactly what vertical space is left */
+    .etsy-iframe {
+      width: 100%;
+      flex: 1;
+      min-height: 0; /* Allows iframe to fit without pushing off screen */
+      border: none;
     }
   </style>
 
@@ -32,7 +67,12 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <img src="/src/Shop_Banner_3360x840.jpg" width="100%" style="height: auto; object-fit: cover;"></img>
-  <iframe src="https://widgets.sociablekit.com/etsy-shop/iframe/25691742" frameborder="0" width="100%" style="flex-grow: 1; border: none;"></iframe>
+  <!-- Layout wrapper starts here -->
+  <div class="app-container">
+    <img src="/src/Shop_Banner_3360x840.jpg" alt="Monro Designs Co Banner" class="shop-banner">
+    
+    <iframe src="https://widgets.sociablekit.com/etsy-shop/iframe/25691742" class="etsy-iframe"></iframe>
+  </div>
+
 </body>
 </html>
