@@ -2,62 +2,72 @@
 <urlset xmlns="http://sitemaps.org"
         xmlns:image="http://google.com"
         xmlns:video="http://google.com">
+  
   <url>
-    <loc>https://monrodesignsco.github.io/</loc>
+    <loc>https://github.io</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1</priority>
-
-    <loc>https://monrodesignsco.github.io/DinoDesign1</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-
-    <loc>https://monrodesignsco.github.io/DinoDesign2</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-
-    <loc>https://monrodesignsco.github.io/DinoDesign3</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-
-    <loc>https://monrodesignsco.github.io/DinoDesign4</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-
-    <loc>https://monrodesignsco.github.io/DinoDesign5</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-
-    <loc>https://monrodesignsco.github.io/DinoDesign6</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-
-    <loc>https://monrodesignsco.github.io/DinoDesign7</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-
-    <loc>https://monrodesignsco.github.io/DinoDesign8</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-
-    
+    <priority>1.0</priority>
     <image:image>
-      <image:loc>https://monrodesignsco.github.io/src/Shop_Banner_3360x840.jpg</image:loc>
-      <image:caption>The Shop Banner of the Monro Designs Co Etsy Store. See here: https://monrodesignsco.github.io/ © Monro Designs Co</image:caption>
+      <image:loc>https://github.iosrc/Shop_Banner_3360x840.jpg</image:loc>
+      <image:caption>The Shop Banner of the Monro Designs Co Etsy Store. See here: https://github.io © Monro Designs Co</image:caption>
       <image:title>Shop Banner | Monro Designs Co</image:title>
     </image:image>
-    <image:image>
-      <image:loc>https://monrodesignsco.github.io/src/Logo_200x200.jpg</image:loc>
-      <image:caption>The Logo of the Monro Designs Co Etsy Store. See here: https://monrodesignsco.github.io/ © Monro Designs Co</image:caption>
-      <image:title>Logo | Monro Designs Co</image:title>
-    </image:image>
+  </url>
+
+  <url>
+    <loc>https://github.ioDinoDesign1</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://github.ioDinoDesign2</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://github.ioDinoDesign3</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://github.ioDinoDesign4</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://github.ioDinoDesign5</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://github.ioDinoDesign6</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://github.ioDinoDesign7</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://github.ioDinoDesign8</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
